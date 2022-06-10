@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TwitterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+
+Route::get('/auth/twitter/redirect', [TwitterController::class, 'provider'])->name('auth.twitter');
+
+Route::get('/auth/twitter/callback', [TwitterController::class, 'providerHandler']);
+
+require __DIR__.'/auth.php';

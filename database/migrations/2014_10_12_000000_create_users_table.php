@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('twitter_id');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('twitter_token');
+            $table->string('twitter_refresh_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
